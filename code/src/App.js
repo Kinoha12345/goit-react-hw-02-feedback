@@ -2,6 +2,7 @@ import { Component } from 'react';
 import './App.css';
 import Feedback from './components/Feedback';
 import Statistics from './components/Statistics';
+import Section from './components/Section';
 class App extends Component {
   state = { good: 0, neutral: 0, bad: 0 };
   countFeedback = (e) => {
@@ -20,11 +21,12 @@ class App extends Component {
   render() {
     // const {good,neutral,bad} = this
     const {countTotalFeedback, countPositiveFeedbackPercentage,countFeedback} = this
+    const totalFeedback = countTotalFeedback()
     return (
-      <div className="App">
+      <Section title='please leave your feedback'>
         <Feedback countFeedback ={countFeedback}/>
-        <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={countTotalFeedback()} positivePercentage={countPositiveFeedbackPercentage()}/>
-      </div>
+        {totalFeedback?<Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={totalFeedback} positivePercentage={countPositiveFeedbackPercentage()}/>:<Section title={"There is no feedback"}/>}
+        </Section>
     );
   }
 }
