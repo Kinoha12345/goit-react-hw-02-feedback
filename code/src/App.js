@@ -24,7 +24,7 @@ class App extends Component {
     const totalFeedback = countTotalFeedback()
     return (
       <Section title='please leave your feedback'>
-        <Feedback countFeedback ={countFeedback}/>
+        <Feedback countFeedback ={countFeedback} options={Object.keys(this.state)}/>
         {totalFeedback?<Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={totalFeedback} positivePercentage={countPositiveFeedbackPercentage()}/>:<Section title={"There is no feedback"}/>}
         </Section>
     );

@@ -1,18 +1,19 @@
-const Feedback = ({countFeedback}) => {
+import propTypes from "prop-types"
+
+const Feedback = ({countFeedback, options}) => {
     return (
       <>
-        <h1>Please leave feedback</h1>
-        <button onClick={countFeedback} type="button" id="good">
-          Good
-        </button>
-        <button onClick={countFeedback} type="button" id="neutral">
-          Neutral
-        </button>
-        <button onClick={countFeedback} type="button" id="bad">
-          Bad
-        </button>
-      </>
+      
+        {options.map(el => <button onClick={countFeedback} type="button"  id={el} key={el}>
+          {el}
+           </button>)}
+           </>
     );
   };
   
+  Feedback.propTypes = {
+    countFeedback: propTypes.func.isRequired,
+    options: propTypes.arrayOf(propTypes.string).isRequired,
+  };
+
   export default Feedback;
